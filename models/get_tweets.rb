@@ -1,7 +1,7 @@
 # This class handles connecting to the Twitter API. In Rack Todo, this lived in app.rb. Here's we've abstracted it out into its own class. This class we will then initialize in app.rb.
 
 # Our Gemfile has the twitter gem and config/environment requires it through Bundler.
-
+require 'pry'
 class GetTweets
   attr_reader :handle
 
@@ -20,6 +20,7 @@ class GetTweets
   def get_search_results
     twitter_search_results = []
     TWITTER.search(handle).each do |tweet|
+      # binding.pry
       # we're saving the tweet user's name and the tweet text in an array of arrays
       twitter_search_results << [tweet.user.name, tweet.text]
     end
